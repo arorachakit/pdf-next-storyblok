@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import { StoryblokComponent } from '@storyblok/react';
+import { StoryblokComponent, storyblokEditable } from '@storyblok/react';
 // import Image from "next/image"
 // Create styles
 const styles = StyleSheet.create({
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 const Doc = ({blok}) => {
     console.log(blok)
     return (
-        <Document>
+        <Document {...storyblokEditable(blok)}>
             <Page style={styles.body}>
             {blok.body.map((nestedBlok) => (
               <StoryblokComponent style={styles[blok.style]} blok={nestedBlok} key={nestedBlok._uid} />
